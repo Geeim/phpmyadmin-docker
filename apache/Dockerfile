@@ -116,7 +116,9 @@ RUN set -ex; \
     apt-mark manual $savedAptMark; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
     rm -rf /var/lib/apt/lists/* \
-    && sed -i '842c $cfg['\"AllowArbitraryServer'\"] = true;' /var/www/html/libraries/config.default.php
+    sed -i '842c $cfg['\"AllowArbitraryServer'\"] = true;' /var/www/html/libraries/config.default.php \
+    sed -i '99c $cfg['\"AllowThirdPartyFraming'\"] = true;' /var/www/html/libraries/config.default.php
+    
 
 # Copy configuration
 COPY config.inc.php /etc/phpmyadmin/config.inc.php
